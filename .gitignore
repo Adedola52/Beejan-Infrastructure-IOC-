@@ -8,4 +8,4 @@ crash.log
 *.auto.tfvars.json
 .vscode/
 .DS_Store
-.hcl
+*.hcl
