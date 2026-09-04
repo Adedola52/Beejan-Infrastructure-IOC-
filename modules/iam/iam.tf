@@ -63,7 +63,7 @@ resource "aws_iam_policy" "policy" {
   name     = each.key
   policy = jsonencode({
     version = each.value.version
-    Statement = each.value.statement
+    Statement = each.value.Statement
   })
 
 }

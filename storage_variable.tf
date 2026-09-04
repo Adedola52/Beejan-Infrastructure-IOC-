@@ -15,12 +15,12 @@ variable "glue_database" {
 }
 
 variable "crawler" {
-  type = map(list(object({
-    role          = string
-    database_name = string
-    bucket        = string
-    folder        = string
-  })))
+  type = map(object({
+    role     = string
+    database = string
+    bucket   = string
+    folder   = string
+  }))
 
 }
 

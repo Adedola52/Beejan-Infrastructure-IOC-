@@ -26,7 +26,7 @@ variable "igw" {
 
 variable "route_table" {
   type = map(object({
-
+    vpc_name = string
   }))
 }
 

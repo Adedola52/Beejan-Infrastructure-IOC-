@@ -4,15 +4,13 @@ resource "aws_instance" "instance" {
   ami           = each.value.instance_ami
   instance_type = each.value.instance_type
 
-  subnet_id = var.subnet_ids[each.value.subnet]
+  subnet_id = var.subnet_ids[each.value.subnet_id]
 
   vpc_security_group_ids = [
-    var.security_group_ids[each.value.security_group]
+    var.security_group_ids[each.value.vpc_security_group_ids]
   ]
 
-  iam_instance_profile = aws_iam_instance_profile.instance_profile[
-    each.value.instance_profile
-  ].name
+  iam_instance_profile = aws_iam_instance_profile.instance_profile[each.value.iam_instance_profile].name
 
 }
 

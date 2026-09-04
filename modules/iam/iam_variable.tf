@@ -41,18 +41,17 @@ variable "role" {
 
 
 variable "policy" {
-  type = map(list(object({
+  type = map(object({
     version = string
 
     Statement = list(object({
       Effect = string
       Action = list(string)
-
       Resource = list(string)
-    })) })
+    })) }))
 
 
-  ))
+  
 }
 
 variable "role_attachment" {

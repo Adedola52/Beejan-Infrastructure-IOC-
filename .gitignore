@@ -9,3 +9,4 @@ crash.log
 .vscode/
 .DS_Store
 *.hcl
+*.lock.hcl

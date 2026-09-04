@@ -27,9 +27,7 @@ resource "aws_glue_crawler" "crawler" {
 
   role = var.glue_role[each.value.role]
 
-  database_name = aws_glue_catalog_database.glue_database[
-    each.value.database
-  ].name
+  database_name = aws_glue_catalog_database.glue_database[each.value.database].name
 
   s3_target {
     path = "s3://${aws_s3_bucket.s3_bucket[each.value.bucket].bucket}/${each.value.folder}"

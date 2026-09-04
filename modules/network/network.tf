@@ -33,7 +33,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_route" "route" {
   for_each = var.route
 
-  route_table_id = aws_route_table.route_table[each.value.route.route_name].id
+  route_table_id = aws_route_table.route_table[each.value.route_name].id
 
   destination_cidr_block = each.value.destination_cidr
 
