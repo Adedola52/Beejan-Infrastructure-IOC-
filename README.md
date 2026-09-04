@@ -1,4 +1,4 @@
-# Beejan-Infrastructure-IOC-
+# Beejan-Infrastructure-IOC
 
 # COB — Cloud Infrastructure Platform
 
@@ -18,16 +18,16 @@ Beejan Technologies requires a consistent and repeatable way to provision its AW
 
 Managing these resources manually through the AWS Management Console can introduce configuration inconsistencies, make environments difficult to reproduce, and increase the effort required to provision or modify infrastructure.
 
-COB addresses this by defining Beejan Technologies' AWS infrastructure as Terraform code.
+COB addresses this by defining Beejan Technologies AWS infrastructure as Terraform code.
 
 The project provides:
 
-* Repeatable infrastructure provisioning.
-* Reusable Terraform modules.
-* Consistent configurations across environments.
-* Separation of infrastructure code from environment-specific values.
-* Version-controlled infrastructure changes.
-* A standardized approach to provisioning networking, IAM, compute, storage, and managed AWS services.
+* Repeatable infrastructure provisioning
+* Reusable Terraform modules
+* Consistent configurations across environments
+* Separation of infrastructure code from environment-specific values
+* Version-controlled infrastructure changes
+* A standardized approach to provisioning networking, IAM, compute, storage, and managed AWS services
 
 Instead of manually creating each AWS resource, engineers can use the Terraform configuration to provision the required infrastructure from a defined configuration.
 
@@ -118,11 +118,11 @@ The infrastructure is organized into major components rather than treating each 
 
 The architecture is designed around the relationship between these components:
 
-* **Networking** provides the connectivity and isolation required by workloads.
-* **IAM** controls access to AWS resources and provides roles for workloads.
-* **Compute** hosts application workloads.
-* **S3** provides object storage.
-* **Glue and Athena** support cataloguing and querying of data stored in S3.
+* **Networking** provides the connectivity and isolation required by workloads
+* **IAM** controls access to AWS resources and provides roles for workloads
+* **Compute** hosts application workloads
+* **S3** provides object storage
+* **Glue and Athena** support cataloguing and querying of data stored in S3
 * **RDS** provides managed relational database infrastructure.
 
 ---
@@ -323,72 +323,7 @@ For shared or production environments, remote state storage with appropriate acc
 
 ---
 
-## 11. Important Assumptions
-
-COB assumes that:
-
-* Engineers deploying the infrastructure have valid AWS credentials.
-* The deploying identity has sufficient permissions to create the required AWS resources.
-* The selected AWS region supports the required services.
-* Environment-specific configuration is provided through Terraform variable files.
-* Resource names supplied through configuration are unique where required.
-* AWS service quotas are sufficient for the planned infrastructure.
-
----
-
-## 12. Known Limitations
-
-The current implementation has the following limitations:
-
-* The platform is dependent on AWS service availability and quotas.
-* Production high-availability requirements may require additional configuration depending on the workload.
-* A remote Terraform backend should be configured for collaborative production usage.
-* Secrets management requires integration with an appropriate secrets-management solution.
-* Disaster recovery requirements may require additional infrastructure beyond the base configuration.
-
----
-
-# 13. Architectural Decisions
-
-## Terraform as the IaC Tool
-
-**Decision:** Terraform is used to provision and manage AWS infrastructure.
-
-**Reasoning:** Terraform allows Beejan Technologies to define infrastructure declaratively, version infrastructure changes, and reproduce environments consistently.
-
-## Modular Infrastructure
-
-**Decision:** Infrastructure is divided into reusable modules based on infrastructure concerns.
-
-**Reasoning:** Separating networking, IAM, compute, storage, and database infrastructure makes the configuration easier to maintain and allows components to be reused.
-
-## Environment-Specific Configuration
-
-**Decision:** Environment-specific values are separated from infrastructure definitions.
-
-**Reasoning:** Development and production environments may require different configurations. Separating values allows the same Terraform code to be used across environments.
-
-## `for_each` for Repeated Resources
-
-**Decision:** `for_each` is used for resources that are driven by collections of configuration values.
-
-**Reasoning:** This allows resources such as IAM users, policies, subnets, and other repeated resources to be created dynamically from structured variables rather than duplicating Terraform blocks.
-
-## IAM Roles for AWS Workloads
-
-**Decision:** IAM roles are used for workloads where possible.
-
-**Reasoning:** IAM roles reduce reliance on long-lived credentials and provide a controlled way for AWS resources such as EC2 and ECS workloads to access other AWS services.
-
-## Managed AWS Services
-
-**Decision:** AWS managed services such as RDS, S3, Glue, Athena, and ECS are used where appropriate.
-
-**Reasoning:** Managed services reduce the operational overhead of maintaining equivalent infrastructure while providing AWS-native capabilities.
-
----
-
-# 14. Deployment Workflow
+# 11. Deployment Workflow
 
 The recommended workflow is:
 
@@ -427,7 +362,7 @@ This workflow ensures that configuration is formatted and validated before infra
 
 ---
 
-# 15. Conclusion
+# 12. Conclusion
 
 COB provides Beejan Technologies with a repeatable Terraform-based approach to AWS infrastructure provisioning.
 
